@@ -3,7 +3,7 @@ kind: ClusterRole
 metadata:
   name: cluster-role-pod-reader
 rules:
-  - apiGroups: [""]
+  - apiGroups: ["*"]
     resources: ["pods"]
     verbs: ["get", "watch", "list"]
 
