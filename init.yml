@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-container
+spec:
+  containers:
+    - name: my-nginx
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+  initContainers:
+    - name: busybox
+      image: busybox
+      command: ["/bin/sh"]
+      args: ["-c", "echo '<html><h2>This is an init container</h2></html>' >> /work-dir/index.html"]
+      volumeMounts:
+        - name: workdir
+          mountPath: "/work-dir"
+  volumes:
+    - name: workdir
+      emptyDir: {}
